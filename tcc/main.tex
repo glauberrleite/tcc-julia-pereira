@@ -1,0 +1,139 @@
+\documentclass[12pt,a4paper,oneside]{TCC-IC}
+%\documentclass[12pt,a4paper,twoside]{TCC-IC}
+
+\usepackage{amsmath,amsfonts,mathdots,amssymb, mathtools}
+\usepackage{graphicx}
+\usepackage[caption=false]{subfig}
+\usepackage{svg}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{bm}
+\usepackage{natbib}
+\usepackage{pdfpages}
+\usepackage{booktabs}
+\usepackage{indentfirst}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{array}
+\usepackage{makecell}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{subcaption}
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Pacotes adicionados % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+\usepackage{easyReview} %%para revisoes
+\setreviewson
+%%how to:
+%%\replace{This part of the text needs to be replaced}{for this newer part of the text}
+%%\comment{This text will receive a comment.}{This is the comment I have!}.
+%%\replace{This part of the text needs to be replaced}{for this newer part of the text}.
+%%\add{This text is been added now}
+%%\remove{This text is to be removed}
+%%\highlight{A text with the highlight command}.
+%%\alert{A text with the alert command}
+
+
+%% % % % % % %
+\onehalfspacing
+\begin{document}
+\include{macros}
+\sloppy
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+\include{Identificacao}	% % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+\capa
+\folhaDeRosto
+% \includepdf{Cap00/Ficha Catalografica.pdf}
+%\includepdf{Cap00/TCC_FORMULARIO.pdf}
+\folhaDeAprovacao
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Opcionais % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+\dedicatoria %opcional
+% \agradecimentos %opcional
+%\epigrafe %opcional
+
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Obrigatórios  % % % % % % % % % % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+\resumo
+\abstract
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+\listoffigures
+\cleardoublepage
+% % % % % % % % % % % % % % % % %
+%\listoftables
+\cleardoublepage
+%\simbolos
+\cleardoublepage
+\abreviaturas
+\cleardoublepage
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+%\renewcommand{\contentsname}{Summary}
+\tableofcontents
+\cleardoublepage
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+\pagenumbering{arabic}
+
+\pagestyle{myheadings}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+%% Remover depois
+\input{Cap00/Dicas}
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Incluir capítulos aqui  % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+\input{Cap01/Capitulo1}
+\cleardoublepage
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+\input{Cap02/Capitulo2}
+\cleardoublepage
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+\input{Cap03/Capitulo3}
+\cleardoublepage
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+\input{Cap04/Capitulo4}
+\cleardoublepage
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+%\input{Cap05/Capitulo5}
+%\cleardoublepage
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+%\input{Cap06/Capitulo6}
+%\cleardoublepage
+%%% % % % % % % % % % % % % % % % % % % % % % % % % % %
+\input{Conc/Conclusao.tex}
+\cleardoublepage
+%%% % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%% % % % % % % % % % % % % % % % % % % % % % % % % % %
+\markright{Bibliography}
+%\renewcommand\bibname{Bibliography}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Definir estilo bibliográfico  % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+%\bibliographystyle{alpha}
+\bibliographystyle{apalike}
+%\bibliographystyle{ieeetr}
+%%
+{
+	\addcontentsline{toc}{chapter}{Bibliografia}
+	\bibliography{Ref/SampleReferences}
+}
+\cleardoublepage
+%%% % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%% % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+\input{Apend/apendiceA}
+\cleardoublepage
+
+\end{document}

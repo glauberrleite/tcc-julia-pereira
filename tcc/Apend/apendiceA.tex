@@ -1,0 +1,51 @@
+\appendix
+\chapter{Script de Coleta de Dados MQTT em Python}
+
+\begin{lstlisting}[language=Python, basicstyle=\ttfamily\small, breaklines=true]
+import paho.mqtt.client as mqtt
+import csv, os, sys
+
+CENARIOS_ATIVOS = [
+    ["MZ", "RZ", "ON", "OFF"],
+    ["MZ", "RZ", "OFF", "ON"],
+]
+BUFFER, COUNT = [], 0
+
+def save(index, t1, t2):
+    d1, d2, s1, s2 = SCENARIOS[index]
+    path = os.path.join("BASE_DIR", f"{d1}_{d2}", f"{s1}_{s2}.csv")
+    with open(path, "a", newline="") as f:
+        csv.writer(f).writerow([t1,t2])
+
+def handle_messages(BUFFER):
+    timers = [BUFFER.split()[1] for l in BUFFER]
+    save(0,timers[0], timers[1])
+    save(1,timers[2],timers[3])
+
+def on_connect(client, userdata, flags, rc):
+    client.subscribe("TOPIC_DEFINE")
+
+def on_message(client, userdata, msg):
+    global BUFFER, COUNT
+    BUFFER.append(msg.payload.decode())
+    if len(BUFFER) == 4:
+        handle_messages(BUFFER)
+        BUFFER, COUNT = [],COUNT + 1
+        if COUNT == 20:
+            print("Coleta completa.")
+            client.loop_stop()
+            sys.exit(0)
+
+def main():
+    global client
+    client = mqtt.Client()
+    client.username_pw_set("MQTT_USERNAME", "MQTT_PASSWORD")
+    client.on_connect = on_connect
+    client.on_message = on_message
+    client.connect("MQTT_BROKER", "MQTT_PORT", 60)
+    print("MQTT Ativo...")
+    client.loop_forever()
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
